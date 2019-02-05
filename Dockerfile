@@ -45,19 +45,15 @@ RUN sed -i 's/^#\s*\(deb.*universe\)$/\1/g' /etc/apt/sources.list
 RUN mkdir -p /run/systemd && echo 'docker' > /run/systemd/container
 
 # Python installation
-RUN apt-get update
-RUN apt-get update --fix-missing
+RUN apt-get update && apt-get update --fix-missing
 RUN apt-get install -y software-properties-common vim
 RUN add-apt-repository ppa:jonathonf/python-3.5
-RUN apt-get update
-RUN export PATH
+RUN apt-get update && export PATH
 RUN apt-get install -y build-essential python3.5 python3.5-dev python3-pip python-pip
 RUN apt-get install -y git
-RUN apt-get update
-RUN pip3 install --upgrade pip
+RUN apt-get update && pip3 install --upgrade pip==19.0.1
 RUN pip3 install -U tensorflow
-RUN apt-get update
-RUN pip3 install --no-cache-dir numpy scipy pandas matplotlib
+RUN apt-get update && pip3 install --no-cache-dir numpy scipy pandas matplotlib
 RUN pip3 install neo4j-driver
 
 # NLTK
