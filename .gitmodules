@@ -1,0 +1,6 @@
+[submodule "data_accessors"]
+	path = data_accessors
+	url = https://github.com/rmarkbio/data_accessors.git
+[submodule "nlp_tfidf"]
+	path = nlp_tfidf
+	url = https://github.com/rmarkbio/nlp_tfidf.git
