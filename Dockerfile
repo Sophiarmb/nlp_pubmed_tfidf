@@ -56,6 +56,43 @@ RUN pip3 install -U tensorflow
 RUN apt-get update && pip3 install --no-cache-dir numpy scipy pandas matplotlib
 RUN pip3 install neo4j-driver
 
+RUN pip3 install --upgrade requests==2.13.0
+RUN pip3 install --upgrade oauth2client==4.0.0
+RUN pip3 install --upgrade pydocumentdb
+RUN pip3 install neo4j-driver
+RUN apt-get install libcurl3-gnutls
+RUN apt-get install curl
+#RUN apt-get install wget
+RUN pip3 install wget>=3.2
+RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add -
+RUN curl https://packages.microsoft.com/config/ubuntu/16.04/prod.list > /etc/apt/sources.list.d/mssql-release.list
+RUN apt-get install apt-transport-https
+RUN apt-get update
+RUN apt-get update && apt-get install -y unixodbc unixodbc-dev tdsodbc python-dev build-essential
+
+# These install require a terminal response, which is provided by `printf`
+RUN apt-get install locales
+RUN apt-get install bc
+RUN printf '149\n3' | dpkg-reconfigure locales
+RUN apt-get update
+RUN printf '\n' | add-apt-repository ppa:ubuntu-toolchain-r/test
+RUN apt-get update
+RUN printf 'Y' | apt-get upgrade
+RUN printf 'Y' | apt-get install libstdc++6
+RUN ln -s /usr/lib64/libodbcinst.so.2 /lib/x86_64-linux-gnu/libodbcinst.so.2
+RUN pip3 install networkx
+RUN pip3 install pip --upgrade
+RUN pip3 install setuptools wheel --upgrade
+RUN pip3 install pytz==2017.3
+RUN pip3 install applicationinsights>=0.11.5
+RUN pip3 install cachetools>=2.0.1
+RUN pip3 install pydocumentdb>=2.3.0
+RUN pip3 install nltk
+
+RUN apt-get install -y freetds-common freetds-bin freetds-dev
+RUN bash -c "echo $'[FreeTDS]\nDescription = FreeTDS Driver\nDriver = /usr/lib/x86_64-linux-gnu/odbc/libtdsodbc.so\nSetup = /usr/lib/x86_64-linux-gnu/odbc/libtdsodbc.so\nFileUsage = 1' > /etc/odbcinst.ini"
+RUN ACCEPT_EULA=Y apt-get install msodbcsql17
+RUN pip3 install django-pyodbc-azure
 # NLTK
 RUN pip3 install nltk
 RUN python3 -c "import nltk; nltk.download('stopwords')"

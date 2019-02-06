@@ -16,9 +16,10 @@ from datetime import datetime
 #from neo4j_config import neo4j_config
 from tools import get_or_create_directory
 #from tfidf import TF_IDF
+from data_accessors.data_accessors import EternalBearerToken
 
-import data_accessors
-print(data_accessors)
+#import data_accessors
+#print(data_accessors)
 #from data_accessors import EternalBearerToken
 #medical_keywords_api_health_check(token=GLOBAL_ETERNAL_TOKEN)
 
